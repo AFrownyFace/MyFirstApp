@@ -1,0 +1,47 @@
+﻿@page "/todo"
+
+ 
+<h1>Todo</h1>
+<!-- after we create that list of objects we can loop through it -->
+<!-- at this point it will be empty so we need to find a way to add todos --> 
+@foreach(var todo in todos)
+            {
+                   <p>@todo.Title</p>
+                   <input type="checkbox" @bind="todo.IsDone" />
+            }
+
+<!-- binding the reference to our input --> 
+<input type="text" @bind="NewTodo"/>
+
+<button @onclick="addTodo">Add todos </button>
+<!-- how many items left undone -->
+<h1>@todos.Count(todo => !todo.IsDone)</h1>
+@code {
+    // creates an empty list 
+    // which will be like  this  { {Title="Some  title",IsDone=false}, {Title="Some  title2",IsDone=false} }
+
+
+    // https://www.c-sharpcorner.com/article/c-sharp-list/   -- read this
+    private List<TodoItem> todos = new List<TodoItem>();
+
+    // having a reference to the new todo that we will be adding
+
+    public string? NewTodo { get; set; }
+
+
+    public void addTodo()
+    {
+        // check if string is empty or null 
+        if (!string.IsNullOrWhiteSpace(NewTodo))
+
+        {
+            todos.Add(new TodoItem { Title = NewTodo });
+            // clearing input
+            NewTodo = "";
+
+        }
+    }
+    }
+
+
+  
