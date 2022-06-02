@@ -2,33 +2,35 @@
 <h3>BrandonPage</h3>
 
 
-<button @onclick="isBrandonHere">Check if brandon is here!</button>
+<button @onclick="isBrandonHere">Check if brandon is here!Is he here?</button>
 @if (!isHere)
 {
-                <h1>Brandon isn't here </h1>
+    <h1>Brandon isn't here </h1>
 }
 else
 {
-                <h1>Brandon is here </h1>
+    <h1>Brandon is here </h1>
 }
 
- @foreach (var name in newAuthors)
- {
-
-    
-                <h1>@name</h1>
-    
-}
-
-<h1>Brandon just got visited by  @foreach (var author in authors)
+@foreach (var name in newAuthors)
 {
-    index++;
-    if(Convert.ToInt32(@AuthorId)==Convert.ToInt32(@index))
-                {
-                  <span>@author</span>
-                }
 
-}</h1>
+
+    <h1>@name</h1>
+
+}
+
+<h1>
+    Brandon just got visited by  @foreach (var author in authors)
+    {
+        index++;
+        if (Convert.ToInt32(@AuthorId) == Convert.ToInt32(@index))
+        {
+            <span>@author</span>
+        }
+
+    }
+</h1>
 
 @code {
 
@@ -40,12 +42,12 @@ else
 
 
     int index = 0;
-    bool isHere=false;
+    bool isHere = false;
 
-    public void  isBrandonHere()
+    public void isBrandonHere()
     {
         if (isHere == true) isHere = false;
-        else if(isHere==false) { isHere = true; }
+        else if (isHere == false) { isHere = true; }
 
     }
 
